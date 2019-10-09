@@ -17,23 +17,21 @@ def norme(gradient):
 
 def optimum(x0, teta, d, grad):
     k=0
-    val_norme = norme(grad)
-    if val_norme < 0.01:
+    if norme(grad) < 0.01:
+        print("Valeur optimale :")
         return (print(x0))
     xk_plus_un = x0
-    while (norme(grad) > 0.001):
-        xk_plus_un = xk_plus_un + teta * d
+    while (norme(grad) > 0.000001):
+        xk_plus_un = xk_plus_un - teta * grad
         grad = gradient(xk_plus_un[0], xk_plus_un[1])
-        d = direction(grad)
-        n = norme(grad)
 
     print("Valeur optimal : ")
     return (print(xk_plus_un))
 
-x0 = np.array([-1,1])
-grad = gradient(-1,1)
+x0 = np.array([-2,1])
+grad = gradient(x0[0],x0[1])
 d=direction(grad)
-optimum(x0,-0.700,d,grad)
+optimum(x0,0.001,d,grad)
 
 """
 1-
